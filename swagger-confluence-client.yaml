@@ -1,0 +1,110 @@
+swagger: "2.0"
+info:
+  description: "This is the confluence rest resources endpoint documentation"
+  version: "0.1.0"
+  title: "Confluence Rest Resources"
+basePath: "/rest/api"
+tags:
+  - name: confluence
+
+schemes:
+  - "https"
+paths:
+  /space/{spaceKey}:
+    get:
+      summary: "Returns information about a space."
+      operationId: "getSpace"
+      tags:
+        - confluence
+      description: "Returns information about a space."
+      security:
+        - crowdAuth: []
+      parameters:
+        - name: "spaceKey"
+          type: "string"
+          in: "path"
+          description: "The space key to return information about the space"
+          required: true
+        - name: "expand"
+          type: "string"
+          in: "query"
+          description: "a comma separated list of properties to expand on the space"
+          required: false
+          default: ""
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Returns a full JSON representation of a space"
+          schema:
+            $ref: '#/definitions/confluenceSpaceExists'
+        404:
+          description: "Returned if there is no space with the given key, or if the calling user does not have permission to view the space."
+          schema:
+            $ref: '#/definitions/confluenceSpaceError'
+securityDefinitions:
+  crowdAuth:
+    type: basic
+definitions:
+  confluenceSpaceExists:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      key:
+        type: "string"
+      name:
+        type: "string"
+      type:
+        type: "string"
+      _links:
+        type: "object"
+        parameters:
+          webui:
+            type: "string"
+          collection:
+            type: "string"
+          base:
+            type: "string"
+          context:
+            type: "string"
+          self:
+            type: "string"
+      _expandable:
+        type: "object"
+        parameters:
+          metadata:
+            type: "string"
+          icon:
+            tpye: "string"
+          description:
+            type: "string"
+          homepage:
+            type: "string"
+
+
+  confluenceSpaceError:
+    type: "object"
+    properties:
+      statusCode:
+        type: "integer"
+      data:
+        type: "object"
+        parameters:
+          authorized:
+            type: "boolean"
+          valid:
+            type: "boolean"
+          allowedInReadOnlyMode:
+            type: "boolean"
+          errors:
+            type: "array"
+          successful:
+            type: "boolean"
+      message:
+        type: "string"
+      reason:
+        type: "string"
+
