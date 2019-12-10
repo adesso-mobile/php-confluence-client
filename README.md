@@ -72,14 +72,16 @@ $apiInstance = new ConfluenceClient\Api\ConfluenceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$space_key = 'space_key_example'; // string | The space key to return information about the space
-$expand = 'expand_example'; // string | a comma separated list of properties to expand on the space
+$page_id = 56; // int | The page ID to return information about the page.
+$status = 'status_example'; // string | list of Content statuses to filter results on. Default value: [current]
+$version = new \stdClass; // object | 
+$expand = 'history,space,version'; // string | A comma separated list of properties to expand on the content. Default value: history,space,version We can also specify some extensions such as extensions.inlineProperties (for getting inline comment-specific properties) or extensions.resolution for the resolution status of each comment in the results
 
 try {
-    $result = $apiInstance->getSpace($space_key, $expand);
+    $result = $apiInstance->getContentById($page_id, $status, $version, $expand);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ConfluenceApi->getSpace: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ConfluenceApi->getContentById: ', $e->getMessage(), PHP_EOL;
 }
 
 ?>
@@ -91,11 +93,27 @@ All URIs are relative to *http://localhost/rest/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*ConfluenceApi* | [**getContentById**](docs/Api/ConfluenceApi.md#getcontentbyid) | **GET** /content/{pageId} | Gets a confluence page content by id.
 *ConfluenceApi* | [**getSpace**](docs/Api/ConfluenceApi.md#getspace) | **GET** /space/{spaceKey} | Returns information about a space.
 
 
 ## Documentation For Models
 
+ - [ConfluencePageRepresentation](docs/Model/ConfluencePageRepresentation.md)
+ - [ConfluencePageRepresentationExpandable](docs/Model/ConfluencePageRepresentationExpandable.md)
+ - [ConfluencePageRepresentationExtensions](docs/Model/ConfluencePageRepresentationExtensions.md)
+ - [ConfluencePageRepresentationHistory](docs/Model/ConfluencePageRepresentationHistory.md)
+ - [ConfluencePageRepresentationHistoryCreatedBy](docs/Model/ConfluencePageRepresentationHistoryCreatedBy.md)
+ - [ConfluencePageRepresentationHistoryCreatedByExpandable](docs/Model/ConfluencePageRepresentationHistoryCreatedByExpandable.md)
+ - [ConfluencePageRepresentationHistoryCreatedByLinks](docs/Model/ConfluencePageRepresentationHistoryCreatedByLinks.md)
+ - [ConfluencePageRepresentationHistoryCreatedByProfilePicture](docs/Model/ConfluencePageRepresentationHistoryCreatedByProfilePicture.md)
+ - [ConfluencePageRepresentationHistoryExpandable](docs/Model/ConfluencePageRepresentationHistoryExpandable.md)
+ - [ConfluencePageRepresentationLinks](docs/Model/ConfluencePageRepresentationLinks.md)
+ - [ConfluencePageRepresentationSpace](docs/Model/ConfluencePageRepresentationSpace.md)
+ - [ConfluencePageRepresentationSpaceExpandable](docs/Model/ConfluencePageRepresentationSpaceExpandable.md)
+ - [ConfluencePageRepresentationSpaceLinks](docs/Model/ConfluencePageRepresentationSpaceLinks.md)
+ - [ConfluencePageRepresentationVersion](docs/Model/ConfluencePageRepresentationVersion.md)
+ - [ConfluencePageRepresentationVersionExpandable](docs/Model/ConfluencePageRepresentationVersionExpandable.md)
  - [ConfluenceSpaceError](docs/Model/ConfluenceSpaceError.md)
  - [ConfluenceSpaceExists](docs/Model/ConfluenceSpaceExists.md)
 
