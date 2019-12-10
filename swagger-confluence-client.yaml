@@ -47,18 +47,33 @@ paths:
   /content/{pageId}:
     get:
       summary: "Gets a confluence page content by id."
-      operationId: "getPageById"
+      operationId: "getContentById"
       tags:
         - confluence
       description: "Returns a piece of Content."
       security:
         - crowdAuth: []
       parameters:
-        - name: 'pageId'
+        - name: "pageId"
           type: "integer"
           in: "path"
           description: "The page ID to return information about the page."
           required: true
+        - name: "status"
+          type: "string"
+          in: "query"
+          description: "list of Content statuses to filter results on. Default value: [current]"
+          required: false
+        - name: "version"
+          type: "int"
+          in: "query"
+          required: false
+        - name: "expand"
+          type: "string"
+          in: "query"
+          description: "A comma separated list of properties to expand on the content. Default value: history,space,version We can also specify some extensions such as extensions.inlineProperties (for getting inline comment-specific properties) or extensions.resolution for the resolution status of each comment in the results"
+          default: "history,space,version"
+          required: false
       consumes:
         - "application/json"
       produces:
