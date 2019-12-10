@@ -47,7 +47,7 @@ paths:
   /content/{pageId}:
     get:
       summary: "Gets a confluence page content by id."
-      operationId: "getPage"
+      operationId: "getPageById"
       tags:
         - confluence
       description: "Returns a piece of Content."
@@ -67,7 +67,7 @@ paths:
         200:
           description: "Returns a full JSON representation of a piece of content"
           schema:
-            $ref: '#/definitions/confluencePageExists'
+            $ref: '#/definitions/confluencePageRepresentation'
         404:
           description: "Returned if there is no content with the given id, or if the calling user does not have permission to view the content."
 
@@ -110,7 +110,7 @@ definitions:
             type: "string"
           homepage:
             type: "string"
-  confluencePageExists:
+  confluencePageRepresentation:
     type: "object"
     properties:
       id:
