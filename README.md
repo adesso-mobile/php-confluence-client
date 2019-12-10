@@ -73,12 +73,15 @@ $apiInstance = new ConfluenceClient\Api\ConfluenceApi(
     $config
 );
 $page_id = 56; // int | The page ID to return information about the page.
+$status = 'status_example'; // string | list of Content statuses to filter results on. Default value: [current]
+$version = new \stdClass; // object | 
+$expand = 'history,space,version'; // string | A comma separated list of properties to expand on the content. Default value: history,space,version We can also specify some extensions such as extensions.inlineProperties (for getting inline comment-specific properties) or extensions.resolution for the resolution status of each comment in the results
 
 try {
-    $result = $apiInstance->getPageById($page_id);
+    $result = $apiInstance->getContentById($page_id, $status, $version, $expand);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ConfluenceApi->getPageById: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ConfluenceApi->getContentById: ', $e->getMessage(), PHP_EOL;
 }
 
 ?>
@@ -90,7 +93,7 @@ All URIs are relative to *http://localhost/rest/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ConfluenceApi* | [**getPageById**](docs/Api/ConfluenceApi.md#getpagebyid) | **GET** /content/{pageId} | Gets a confluence page content by id.
+*ConfluenceApi* | [**getContentById**](docs/Api/ConfluenceApi.md#getcontentbyid) | **GET** /content/{pageId} | Gets a confluence page content by id.
 *ConfluenceApi* | [**getSpace**](docs/Api/ConfluenceApi.md#getspace) | **GET** /space/{spaceKey} | Returns information about a space.
 
 

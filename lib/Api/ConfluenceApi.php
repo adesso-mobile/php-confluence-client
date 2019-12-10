@@ -116,36 +116,42 @@ class ConfluenceApi
     }
 
     /**
-     * Operation getPageById
+     * Operation getContentById
      *
      * Gets a confluence page content by id.
      *
      * @param  int $page_id The page ID to return information about the page. (required)
+     * @param  string $status list of Content statuses to filter results on. Default value: [current] (optional)
+     * @param  object $version version (optional)
+     * @param  string $expand A comma separated list of properties to expand on the content. Default value: history,space,version We can also specify some extensions such as extensions.inlineProperties (for getting inline comment-specific properties) or extensions.resolution for the resolution status of each comment in the results (optional, default to 'history,space,version')
      *
      * @throws \ConfluenceClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \ConfluenceClient\Model\ConfluencePageRepresentation
      */
-    public function getPageById($page_id)
+    public function getContentById($page_id, $status = null, $version = null, $expand = 'history,space,version')
     {
-        list($response) = $this->getPageByIdWithHttpInfo($page_id);
+        list($response) = $this->getContentByIdWithHttpInfo($page_id, $status, $version, $expand);
         return $response;
     }
 
     /**
-     * Operation getPageByIdWithHttpInfo
+     * Operation getContentByIdWithHttpInfo
      *
      * Gets a confluence page content by id.
      *
      * @param  int $page_id The page ID to return information about the page. (required)
+     * @param  string $status list of Content statuses to filter results on. Default value: [current] (optional)
+     * @param  object $version (optional)
+     * @param  string $expand A comma separated list of properties to expand on the content. Default value: history,space,version We can also specify some extensions such as extensions.inlineProperties (for getting inline comment-specific properties) or extensions.resolution for the resolution status of each comment in the results (optional, default to 'history,space,version')
      *
      * @throws \ConfluenceClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \ConfluenceClient\Model\ConfluencePageRepresentation, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPageByIdWithHttpInfo($page_id)
+    public function getContentByIdWithHttpInfo($page_id, $status = null, $version = null, $expand = 'history,space,version')
     {
-        $request = $this->getPageByIdRequest($page_id);
+        $request = $this->getContentByIdRequest($page_id, $status, $version, $expand);
 
         try {
             $options = $this->createHttpClientOption();
@@ -221,18 +227,21 @@ class ConfluenceApi
     }
 
     /**
-     * Operation getPageByIdAsync
+     * Operation getContentByIdAsync
      *
      * Gets a confluence page content by id.
      *
      * @param  int $page_id The page ID to return information about the page. (required)
+     * @param  string $status list of Content statuses to filter results on. Default value: [current] (optional)
+     * @param  object $version (optional)
+     * @param  string $expand A comma separated list of properties to expand on the content. Default value: history,space,version We can also specify some extensions such as extensions.inlineProperties (for getting inline comment-specific properties) or extensions.resolution for the resolution status of each comment in the results (optional, default to 'history,space,version')
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPageByIdAsync($page_id)
+    public function getContentByIdAsync($page_id, $status = null, $version = null, $expand = 'history,space,version')
     {
-        return $this->getPageByIdAsyncWithHttpInfo($page_id)
+        return $this->getContentByIdAsyncWithHttpInfo($page_id, $status, $version, $expand)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -241,19 +250,22 @@ class ConfluenceApi
     }
 
     /**
-     * Operation getPageByIdAsyncWithHttpInfo
+     * Operation getContentByIdAsyncWithHttpInfo
      *
      * Gets a confluence page content by id.
      *
      * @param  int $page_id The page ID to return information about the page. (required)
+     * @param  string $status list of Content statuses to filter results on. Default value: [current] (optional)
+     * @param  object $version (optional)
+     * @param  string $expand A comma separated list of properties to expand on the content. Default value: history,space,version We can also specify some extensions such as extensions.inlineProperties (for getting inline comment-specific properties) or extensions.resolution for the resolution status of each comment in the results (optional, default to 'history,space,version')
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPageByIdAsyncWithHttpInfo($page_id)
+    public function getContentByIdAsyncWithHttpInfo($page_id, $status = null, $version = null, $expand = 'history,space,version')
     {
         $returnType = '\ConfluenceClient\Model\ConfluencePageRepresentation';
-        $request = $this->getPageByIdRequest($page_id);
+        $request = $this->getContentByIdRequest($page_id, $status, $version, $expand);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -290,19 +302,22 @@ class ConfluenceApi
     }
 
     /**
-     * Create request for operation 'getPageById'
+     * Create request for operation 'getContentById'
      *
      * @param  int $page_id The page ID to return information about the page. (required)
+     * @param  string $status list of Content statuses to filter results on. Default value: [current] (optional)
+     * @param  object $version (optional)
+     * @param  string $expand A comma separated list of properties to expand on the content. Default value: history,space,version We can also specify some extensions such as extensions.inlineProperties (for getting inline comment-specific properties) or extensions.resolution for the resolution status of each comment in the results (optional, default to 'history,space,version')
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getPageByIdRequest($page_id)
+    protected function getContentByIdRequest($page_id, $status = null, $version = null, $expand = 'history,space,version')
     {
         // verify the required parameter 'page_id' is set
         if ($page_id === null || (is_array($page_id) && count($page_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $page_id when calling getPageById'
+                'Missing the required parameter $page_id when calling getContentById'
             );
         }
 
@@ -313,6 +328,18 @@ class ConfluenceApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($status !== null) {
+            $queryParams['status'] = ObjectSerializer::toQueryValue($status);
+        }
+        // query params
+        if ($version !== null) {
+            $queryParams['version'] = ObjectSerializer::toQueryValue($version);
+        }
+        // query params
+        if ($expand !== null) {
+            $queryParams['expand'] = ObjectSerializer::toQueryValue($expand);
+        }
 
         // path params
         if ($page_id !== null) {

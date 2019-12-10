@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost/rest/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getPageById**](ConfluenceApi.md#getPageById) | **GET** /content/{pageId} | Gets a confluence page content by id.
+[**getContentById**](ConfluenceApi.md#getContentById) | **GET** /content/{pageId} | Gets a confluence page content by id.
 [**getSpace**](ConfluenceApi.md#getSpace) | **GET** /space/{spaceKey} | Returns information about a space.
 
 
 
-## getPageById
+## getContentById
 
-> \ConfluenceClient\Model\ConfluencePageRepresentation getPageById($page_id)
+> \ConfluenceClient\Model\ConfluencePageRepresentation getContentById($page_id, $status, $version, $expand)
 
 Gets a confluence page content by id.
 
@@ -37,12 +37,15 @@ $apiInstance = new ConfluenceClient\Api\ConfluenceApi(
     $config
 );
 $page_id = 56; // int | The page ID to return information about the page.
+$status = 'status_example'; // string | list of Content statuses to filter results on. Default value: [current]
+$version = new \stdClass; // object | 
+$expand = 'history,space,version'; // string | A comma separated list of properties to expand on the content. Default value: history,space,version We can also specify some extensions such as extensions.inlineProperties (for getting inline comment-specific properties) or extensions.resolution for the resolution status of each comment in the results
 
 try {
-    $result = $apiInstance->getPageById($page_id);
+    $result = $apiInstance->getContentById($page_id, $status, $version, $expand);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ConfluenceApi->getPageById: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ConfluenceApi->getContentById: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -53,6 +56,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page_id** | **int**| The page ID to return information about the page. |
+ **status** | **string**| list of Content statuses to filter results on. Default value: [current] | [optional]
+ **version** | [**object**](../Model/.md)|  | [optional]
+ **expand** | **string**| A comma separated list of properties to expand on the content. Default value: history,space,version We can also specify some extensions such as extensions.inlineProperties (for getting inline comment-specific properties) or extensions.resolution for the resolution status of each comment in the results | [optional] [default to &#39;history,space,version&#39;]
 
 ### Return type
 
