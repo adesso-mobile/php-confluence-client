@@ -116,7 +116,7 @@ class ConfluenceApi
     }
 
     /**
-     * Operation getPage
+     * Operation getPageById
      *
      * Gets a confluence page content by id.
      *
@@ -124,16 +124,16 @@ class ConfluenceApi
      *
      * @throws \ConfluenceClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \ConfluenceClient\Model\ConfluencePageExists
+     * @return \ConfluenceClient\Model\ConfluencePageRepresentation
      */
-    public function getPage($page_id)
+    public function getPageById($page_id)
     {
-        list($response) = $this->getPageWithHttpInfo($page_id);
+        list($response) = $this->getPageByIdWithHttpInfo($page_id);
         return $response;
     }
 
     /**
-     * Operation getPageWithHttpInfo
+     * Operation getPageByIdWithHttpInfo
      *
      * Gets a confluence page content by id.
      *
@@ -141,11 +141,11 @@ class ConfluenceApi
      *
      * @throws \ConfluenceClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \ConfluenceClient\Model\ConfluencePageExists, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \ConfluenceClient\Model\ConfluencePageRepresentation, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPageWithHttpInfo($page_id)
+    public function getPageByIdWithHttpInfo($page_id)
     {
-        $request = $this->getPageRequest($page_id);
+        $request = $this->getPageByIdRequest($page_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -178,20 +178,20 @@ class ConfluenceApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\ConfluenceClient\Model\ConfluencePageExists' === '\SplFileObject') {
+                    if ('\ConfluenceClient\Model\ConfluencePageRepresentation' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = $responseBody->getContents();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\ConfluenceClient\Model\ConfluencePageExists', []),
+                        ObjectSerializer::deserialize($content, '\ConfluenceClient\Model\ConfluencePageRepresentation', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\ConfluenceClient\Model\ConfluencePageExists';
+            $returnType = '\ConfluenceClient\Model\ConfluencePageRepresentation';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -210,7 +210,7 @@ class ConfluenceApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\ConfluenceClient\Model\ConfluencePageExists',
+                        '\ConfluenceClient\Model\ConfluencePageRepresentation',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -221,7 +221,7 @@ class ConfluenceApi
     }
 
     /**
-     * Operation getPageAsync
+     * Operation getPageByIdAsync
      *
      * Gets a confluence page content by id.
      *
@@ -230,9 +230,9 @@ class ConfluenceApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPageAsync($page_id)
+    public function getPageByIdAsync($page_id)
     {
-        return $this->getPageAsyncWithHttpInfo($page_id)
+        return $this->getPageByIdAsyncWithHttpInfo($page_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -241,7 +241,7 @@ class ConfluenceApi
     }
 
     /**
-     * Operation getPageAsyncWithHttpInfo
+     * Operation getPageByIdAsyncWithHttpInfo
      *
      * Gets a confluence page content by id.
      *
@@ -250,10 +250,10 @@ class ConfluenceApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPageAsyncWithHttpInfo($page_id)
+    public function getPageByIdAsyncWithHttpInfo($page_id)
     {
-        $returnType = '\ConfluenceClient\Model\ConfluencePageExists';
-        $request = $this->getPageRequest($page_id);
+        $returnType = '\ConfluenceClient\Model\ConfluencePageRepresentation';
+        $request = $this->getPageByIdRequest($page_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -290,19 +290,19 @@ class ConfluenceApi
     }
 
     /**
-     * Create request for operation 'getPage'
+     * Create request for operation 'getPageById'
      *
      * @param  int $page_id The page ID to return information about the page. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getPageRequest($page_id)
+    protected function getPageByIdRequest($page_id)
     {
         // verify the required parameter 'page_id' is set
         if ($page_id === null || (is_array($page_id) && count($page_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $page_id when calling getPage'
+                'Missing the required parameter $page_id when calling getPageById'
             );
         }
 

@@ -75,10 +75,10 @@ $apiInstance = new ConfluenceClient\Api\ConfluenceApi(
 $page_id = 56; // int | The page ID to return information about the page.
 
 try {
-    $result = $apiInstance->getPage($page_id);
+    $result = $apiInstance->getPageById($page_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ConfluenceApi->getPage: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ConfluenceApi->getPageById: ', $e->getMessage(), PHP_EOL;
 }
 
 ?>
@@ -90,27 +90,27 @@ All URIs are relative to *http://localhost/rest/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ConfluenceApi* | [**getPage**](docs/Api/ConfluenceApi.md#getpage) | **GET** /content/{pageId} | Gets a confluence page content by id.
+*ConfluenceApi* | [**getPageById**](docs/Api/ConfluenceApi.md#getpagebyid) | **GET** /content/{pageId} | Gets a confluence page content by id.
 *ConfluenceApi* | [**getSpace**](docs/Api/ConfluenceApi.md#getspace) | **GET** /space/{spaceKey} | Returns information about a space.
 
 
 ## Documentation For Models
 
- - [ConfluencePageExists](docs/Model/ConfluencePageExists.md)
- - [ConfluencePageExistsExpandable](docs/Model/ConfluencePageExistsExpandable.md)
- - [ConfluencePageExistsExtensions](docs/Model/ConfluencePageExistsExtensions.md)
- - [ConfluencePageExistsHistory](docs/Model/ConfluencePageExistsHistory.md)
- - [ConfluencePageExistsHistoryCreatedBy](docs/Model/ConfluencePageExistsHistoryCreatedBy.md)
- - [ConfluencePageExistsHistoryCreatedByExpandable](docs/Model/ConfluencePageExistsHistoryCreatedByExpandable.md)
- - [ConfluencePageExistsHistoryCreatedByLinks](docs/Model/ConfluencePageExistsHistoryCreatedByLinks.md)
- - [ConfluencePageExistsHistoryCreatedByProfilePicture](docs/Model/ConfluencePageExistsHistoryCreatedByProfilePicture.md)
- - [ConfluencePageExistsHistoryExpandable](docs/Model/ConfluencePageExistsHistoryExpandable.md)
- - [ConfluencePageExistsLinks](docs/Model/ConfluencePageExistsLinks.md)
- - [ConfluencePageExistsSpace](docs/Model/ConfluencePageExistsSpace.md)
- - [ConfluencePageExistsSpaceExpandable](docs/Model/ConfluencePageExistsSpaceExpandable.md)
- - [ConfluencePageExistsSpaceLinks](docs/Model/ConfluencePageExistsSpaceLinks.md)
- - [ConfluencePageExistsVersion](docs/Model/ConfluencePageExistsVersion.md)
- - [ConfluencePageExistsVersionExpandable](docs/Model/ConfluencePageExistsVersionExpandable.md)
+ - [ConfluencePageRepresentation](docs/Model/ConfluencePageRepresentation.md)
+ - [ConfluencePageRepresentationExpandable](docs/Model/ConfluencePageRepresentationExpandable.md)
+ - [ConfluencePageRepresentationExtensions](docs/Model/ConfluencePageRepresentationExtensions.md)
+ - [ConfluencePageRepresentationHistory](docs/Model/ConfluencePageRepresentationHistory.md)
+ - [ConfluencePageRepresentationHistoryCreatedBy](docs/Model/ConfluencePageRepresentationHistoryCreatedBy.md)
+ - [ConfluencePageRepresentationHistoryCreatedByExpandable](docs/Model/ConfluencePageRepresentationHistoryCreatedByExpandable.md)
+ - [ConfluencePageRepresentationHistoryCreatedByLinks](docs/Model/ConfluencePageRepresentationHistoryCreatedByLinks.md)
+ - [ConfluencePageRepresentationHistoryCreatedByProfilePicture](docs/Model/ConfluencePageRepresentationHistoryCreatedByProfilePicture.md)
+ - [ConfluencePageRepresentationHistoryExpandable](docs/Model/ConfluencePageRepresentationHistoryExpandable.md)
+ - [ConfluencePageRepresentationLinks](docs/Model/ConfluencePageRepresentationLinks.md)
+ - [ConfluencePageRepresentationSpace](docs/Model/ConfluencePageRepresentationSpace.md)
+ - [ConfluencePageRepresentationSpaceExpandable](docs/Model/ConfluencePageRepresentationSpaceExpandable.md)
+ - [ConfluencePageRepresentationSpaceLinks](docs/Model/ConfluencePageRepresentationSpaceLinks.md)
+ - [ConfluencePageRepresentationVersion](docs/Model/ConfluencePageRepresentationVersion.md)
+ - [ConfluencePageRepresentationVersionExpandable](docs/Model/ConfluencePageRepresentationVersionExpandable.md)
  - [ConfluenceSpaceError](docs/Model/ConfluenceSpaceError.md)
  - [ConfluenceSpaceExists](docs/Model/ConfluenceSpaceExists.md)
 

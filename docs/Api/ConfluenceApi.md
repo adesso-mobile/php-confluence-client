@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost/rest/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getPage**](ConfluenceApi.md#getPage) | **GET** /content/{pageId} | Gets a confluence page content by id.
+[**getPageById**](ConfluenceApi.md#getPageById) | **GET** /content/{pageId} | Gets a confluence page content by id.
 [**getSpace**](ConfluenceApi.md#getSpace) | **GET** /space/{spaceKey} | Returns information about a space.
 
 
 
-## getPage
+## getPageById
 
-> \ConfluenceClient\Model\ConfluencePageExists getPage($page_id)
+> \ConfluenceClient\Model\ConfluencePageRepresentation getPageById($page_id)
 
 Gets a confluence page content by id.
 
@@ -39,10 +39,10 @@ $apiInstance = new ConfluenceClient\Api\ConfluenceApi(
 $page_id = 56; // int | The page ID to return information about the page.
 
 try {
-    $result = $apiInstance->getPage($page_id);
+    $result = $apiInstance->getPageById($page_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ConfluenceApi->getPage: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ConfluenceApi->getPageById: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\ConfluenceClient\Model\ConfluencePageExists**](../Model/ConfluencePageExists.md)
+[**\ConfluenceClient\Model\ConfluencePageRepresentation**](../Model/ConfluencePageRepresentation.md)
 
 ### Authorization
 
