@@ -44,6 +44,33 @@ paths:
           description: "Returned if there is no space with the given key, or if the calling user does not have permission to view the space."
           schema:
             $ref: '#/definitions/confluenceSpaceError'
+  /content/{pageId}:
+    get:
+      summary: "Gets a confluence page content by id."
+      operationId: "getPage"
+      tags:
+        - confluence
+      description: "Returns a piece of Content."
+      security:
+        - crowdAuth: []
+      parameters:
+        - name: 'pageId'
+          type: "integer"
+          in: "path"
+          description: "The page ID to return information about the page."
+          required: true
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Returns a full JSON representation of a piece of content"
+          schema:
+            $ref: '#/definitions/confluencePageExists'
+        404:
+          description: "Returned if there is no content with the given id, or if the calling user does not have permission to view the content."
+
 securityDefinitions:
   crowdAuth:
     type: basic
@@ -83,7 +110,291 @@ definitions:
             type: "string"
           homepage:
             type: "string"
-
+  confluencePageExists:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      type:
+        type: "string"
+      status:
+        type: "string"
+      title:
+        type: "string"
+      space:
+        required:
+          - "id"
+          - "key"
+          - "name"
+          - "type"
+          - "_links"
+          - "_expandable"
+        properties:
+          id:
+            type: "number"
+          key:
+            type: "string"
+          name:
+            type: "string"
+          type:
+            type: "string"
+          _links:
+            required:
+              - "webui"
+              - "self"
+            properties:
+              webui:
+                type: "string"
+              self:
+                type: "string"
+            type: "object"
+          _expandable:
+            required:
+              - "metadata"
+              - "icon"
+              - "description"
+              - "homepage"
+            properties:
+              metadata:
+                type: "string"
+              icon:
+                type: "string"
+              description:
+                type: "string"
+              homepage:
+                type: "string"
+            type: "object"
+        type: "object"
+      history:
+        required:
+          - "latest"
+          - "createdBy"
+          - "createdDate"
+          - "_links"
+          - "_expandable"
+        properties:
+          latest:
+            type: "boolean"
+          createdBy:
+            required:
+              - "type"
+              - "username"
+              - "userKey"
+              - "profilePicture"
+              - "displayName"
+              - "_links"
+              - "_expandable"
+            properties:
+              type:
+                type: "string"
+              username:
+                type: "string"
+              userKey:
+                type: "string"
+              profilePicture:
+                required:
+                  - "path"
+                  - "width"
+                  - "height"
+                  - "isDefault"
+                properties:
+                  path:
+                    type: "string"
+                  width:
+                    type: "number"
+                  height:
+                    type: "number"
+                  isDefault:
+                    type: "boolean"
+                type: "object"
+              displayName:
+                type: "string"
+              _links:
+                required:
+                  - "self"
+                properties:
+                  self:
+                    type: "string"
+                type: "object"
+              _expandable:
+                required:
+                  - "status"
+                properties:
+                  status:
+                    type: "string"
+                type: "object"
+            type: "object"
+          createdDate:
+            type: "string"
+          _links:
+            required:
+              - "self"
+            properties:
+              self:
+                type: "string"
+            type: "object"
+          _expandable:
+            required:
+              - "lastUpdated"
+              - "previousVersion"
+              - "contributors"
+              - "nextVersion"
+            properties:
+              lastUpdated:
+                type: "string"
+              previousVersion:
+                type: "string"
+              contributors:
+                type: "string"
+              nextVersion:
+                type: "string"
+            type: "object"
+        type: "object"
+      version:
+        required:
+          - "by"
+          - "when"
+          - "message"
+          - "number"
+          - "minorEdit"
+          - "hidden"
+          - "_links"
+          - "_expandable"
+        properties:
+          by:
+            required:
+              - "type"
+              - "username"
+              - "userKey"
+              - "profilePicture"
+              - "displayName"
+              - "_links"
+              - "_expandable"
+            properties:
+              type:
+                type: "string"
+              username:
+                type: "string"
+              userKey:
+                type: "string"
+              profilePicture:
+                required:
+                  - "path"
+                  - "width"
+                  - "height"
+                  - "isDefault"
+                properties:
+                  path:
+                    type: "string"
+                  width:
+                    type: "number"
+                  height:
+                    type: "number"
+                  isDefault:
+                    type: "boolean"
+                type: "object"
+              displayName:
+                type: "string"
+              _links:
+                required:
+                  - "self"
+                properties:
+                  self:
+                    type: "string"
+                type: "object"
+              _expandable:
+                required:
+                  - "status"
+                properties:
+                  status:
+                    type: "string"
+                type: "object"
+            type: "object"
+          when:
+            type: "string"
+          message:
+            type: "string"
+          number:
+            type: "number"
+          minorEdit:
+            type: "boolean"
+          hidden:
+            type: "boolean"
+          _links:
+            required:
+              - "self"
+            properties:
+              self:
+                type: "string"
+            type: "object"
+          _expandable:
+            required:
+              - "content"
+            properties:
+              content:
+                type: "string"
+            type: "object"
+        type: "object"
+      extensions:
+        required:
+          - "position"
+        properties:
+          position:
+            type: "string"
+        type: "object"
+      _links:
+        required:
+          - "webui"
+          - "edit"
+          - "tinyui"
+          - "collection"
+          - "base"
+          - "context"
+          - "self"
+        properties:
+          webui:
+            type: "string"
+          edit:
+            type: "string"
+          tinyui:
+            type: "string"
+          collection:
+            type: "string"
+          base:
+            type: "string"
+          context:
+            type: "string"
+          self:
+            type: "string"
+        type: "object"
+      _expandable:
+        required:
+          - "container"
+          - "metadata"
+          - "operations"
+          - "children"
+          - "restrictions"
+          - "ancestors"
+          - "body"
+          - "descendants"
+        properties:
+          container:
+            type: "string"
+          metadata:
+            type: "string"
+          operations:
+            type: "string"
+          children:
+            type: "string"
+          restrictions:
+            type: "string"
+          ancestors:
+            type: "string"
+          body:
+            type: "string"
+          descendants:
+            type: "string"
+        type: "object"
 
   confluenceSpaceError:
     type: "object"
