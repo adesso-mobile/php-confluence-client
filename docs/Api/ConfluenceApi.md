@@ -4,8 +4,72 @@ All URIs are relative to *http://localhost/rest/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**getPage**](ConfluenceApi.md#getPage) | **GET** /content/{pageId} | Gets a confluence page content by id.
 [**getSpace**](ConfluenceApi.md#getSpace) | **GET** /space/{spaceKey} | Returns information about a space.
 
+
+
+## getPage
+
+> \ConfluenceClient\Model\ConfluencePageExists getPage($page_id)
+
+Gets a confluence page content by id.
+
+Returns a piece of Content.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: crowdAuth
+$config = ConfluenceClient\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new ConfluenceClient\Api\ConfluenceApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$page_id = 56; // int | The page ID to return information about the page.
+
+try {
+    $result = $apiInstance->getPage($page_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ConfluenceApi->getPage: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page_id** | **int**| The page ID to return information about the page. |
+
+### Return type
+
+[**\ConfluenceClient\Model\ConfluencePageExists**](../Model/ConfluencePageExists.md)
+
+### Authorization
+
+[crowdAuth](../../README.md#crowdAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
 
 ## getSpace

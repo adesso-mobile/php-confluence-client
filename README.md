@@ -72,14 +72,13 @@ $apiInstance = new ConfluenceClient\Api\ConfluenceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$space_key = 'space_key_example'; // string | The space key to return information about the space
-$expand = 'expand_example'; // string | a comma separated list of properties to expand on the space
+$page_id = 56; // int | The page ID to return information about the page.
 
 try {
-    $result = $apiInstance->getSpace($space_key, $expand);
+    $result = $apiInstance->getPage($page_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ConfluenceApi->getSpace: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ConfluenceApi->getPage: ', $e->getMessage(), PHP_EOL;
 }
 
 ?>
@@ -91,11 +90,27 @@ All URIs are relative to *http://localhost/rest/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*ConfluenceApi* | [**getPage**](docs/Api/ConfluenceApi.md#getpage) | **GET** /content/{pageId} | Gets a confluence page content by id.
 *ConfluenceApi* | [**getSpace**](docs/Api/ConfluenceApi.md#getspace) | **GET** /space/{spaceKey} | Returns information about a space.
 
 
 ## Documentation For Models
 
+ - [ConfluencePageExists](docs/Model/ConfluencePageExists.md)
+ - [ConfluencePageExistsExpandable](docs/Model/ConfluencePageExistsExpandable.md)
+ - [ConfluencePageExistsExtensions](docs/Model/ConfluencePageExistsExtensions.md)
+ - [ConfluencePageExistsHistory](docs/Model/ConfluencePageExistsHistory.md)
+ - [ConfluencePageExistsHistoryCreatedBy](docs/Model/ConfluencePageExistsHistoryCreatedBy.md)
+ - [ConfluencePageExistsHistoryCreatedByExpandable](docs/Model/ConfluencePageExistsHistoryCreatedByExpandable.md)
+ - [ConfluencePageExistsHistoryCreatedByLinks](docs/Model/ConfluencePageExistsHistoryCreatedByLinks.md)
+ - [ConfluencePageExistsHistoryCreatedByProfilePicture](docs/Model/ConfluencePageExistsHistoryCreatedByProfilePicture.md)
+ - [ConfluencePageExistsHistoryExpandable](docs/Model/ConfluencePageExistsHistoryExpandable.md)
+ - [ConfluencePageExistsLinks](docs/Model/ConfluencePageExistsLinks.md)
+ - [ConfluencePageExistsSpace](docs/Model/ConfluencePageExistsSpace.md)
+ - [ConfluencePageExistsSpaceExpandable](docs/Model/ConfluencePageExistsSpaceExpandable.md)
+ - [ConfluencePageExistsSpaceLinks](docs/Model/ConfluencePageExistsSpaceLinks.md)
+ - [ConfluencePageExistsVersion](docs/Model/ConfluencePageExistsVersion.md)
+ - [ConfluencePageExistsVersionExpandable](docs/Model/ConfluencePageExistsVersionExpandable.md)
  - [ConfluenceSpaceError](docs/Model/ConfluenceSpaceError.md)
  - [ConfluenceSpaceExists](docs/Model/ConfluenceSpaceExists.md)
 
